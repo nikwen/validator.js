@@ -3,8 +3,10 @@ const fs = require('fs');
 const rollup = require('rollup').rollup;
 const babel = require('rollup-plugin-babel');
 
+// Build with `npm run build:browser`
+
 rollup({
-  entry: 'src/index.js',
+  entry: 'src/lib/isEmail.js',
   plugins: [
     babel({
       presets: ['es2015-rollup'],
@@ -13,9 +15,9 @@ rollup({
   ],
 }).then(bundle => (
   bundle.write({
-    dest: 'validator.js',
+    dest: 'validator.isEmail.js',
     format: 'umd',
-    moduleName: pkg.name,
+    moduleName: 'isEmail',
     banner: (
       '/*!\n' +
       String(fs.readFileSync('./LICENSE')).trim().split('\n').map(l => ` * ${l}`).join('\n') +
